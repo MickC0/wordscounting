@@ -46,12 +46,12 @@
 </div>
 
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get('lang');
 
-  if ((window.location.pathname === '/' || window.location.pathname === '/index') && navigator.language.startsWith('fr')) {
+  if (!lang && navigator.language.startsWith('fr')) {
     window.location.href = 'fr.html';
   }
-
-
 
   const inputText = document.getElementById('inputText');
   const updateCounts = () => {
