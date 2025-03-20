@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Outil gratuit de comptage de mots et caractères en ligne. Comptez instantanément mots, caractères, phrases, paragraphes et estimez le temps de lecture.">
+  <title>Compteur gratuit de mots et caractères</title>
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
+  <h1 class="text-2xl font-bold mb-4">Compteur de mots et caractères</h1>
+  <label for="inputText" class="sr-only">Tapez ou collez votre texte ici</label>
+  <textarea id="inputText" class="w-full h-60 border border-gray-300 rounded-lg p-3" placeholder="Tapez ou collez votre texte ici..."></textarea>
+
+  <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+    <div class="p-3 bg-blue-100 rounded-lg">
+      <h2 class="font-semibold">Mots</h2>
+      <p id="wordCount" class="text-xl">0</p>
+    </div>
+    <div class="p-3 bg-green-100 rounded-lg">
+      <h2 class="font-semibold">Caractères (avec espaces)</h2>
+      <p id="charCount" class="text-xl">0</p>
+    </div>
+    <div class="p-3 bg-yellow-100 rounded-lg">
+      <h2 class="font-semibold">Caractères (sans espaces)</h2>
+      <p id="charNoSpaceCount" class="text-xl">0</p>
+    </div>
+    <div class="p-3 bg-purple-100 rounded-lg">
+      <h2 class="font-semibold">Phrases</h2>
+      <p id="sentenceCount" class="text-xl">0</p>
+    </div>
+    <div class="p-3 bg-pink-100 rounded-lg">
+      <h2 class="font-semibold">Paragraphes</h2>
+      <p id="paragraphCount" class="text-xl">0</p>
+    </div>
+    <div class="p-3 bg-indigo-100 rounded-lg">
+      <h2 class="font-semibold">Temps de lecture (approx.)</h2>
+      <p id="readingTime" class="text-xl">0 min</p>
+    </div>
+  </div>
+
+  <a href="index.html" class="block mt-4 text-blue-500 underline">English 🇬🇧</a>
+</div>
+
+<script>
+  const inputText = document.getElementById('inputText');
+  const updateCounts = () => {
+    const text = inputText.value.trim();
+    document.getElementById('wordCount').textContent = (text === '' ? 0 : text.match(/\S+/g).length).toString();
+    document.getElementById('charCount').textContent = text.length.toString();
+    document.getElementById('charNoSpaceCount').textContent = text.replace(/\s/g, '').length.toString();
+    document.getElementById('sentenceCount').textContent = text.split(/[.!?]+/).filter(Boolean).length.toString();
+    document.getElementById('paragraphCount').textContent = text.split(/\n+/).filter(p => p.trim() !== '').length.toString();
+    document.getElementById('readingTime').textContent = (Math.ceil((text.match(/\S+/g) || []).length / 200) + ' min');
+  };
+  inputText.addEventListener('input', updateCounts);
+</script>
+</body>
+</html>
