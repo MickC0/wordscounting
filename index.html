@@ -78,7 +78,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 const textarea = document.getElementById("inputText");
-textarea.value = local storage.getItem("savedText") || "";
+textarea.value = localStorage.getItem("savedText") || "";
 textarea.addEventListener("input", function (){
 localStorage.setItem("savedText", textarea.value);
 });
