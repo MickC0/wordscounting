@@ -69,6 +69,14 @@
     document.getElementById('readingTime').textContent = (Math.ceil((text.match(/\S+/g) || []).length / 200) + ' min');
   };
   inputText.addEventListener('input', updateCounts);
+
+document.addEventListener("DOMContentLoaded", function () {
+const textarea = document.getElementById("inputText");
+textarea.value = local storage.getItem("savedText") || "";
+textarea.addEventListener("input", function (){
+localStorage.setItem("savedText", textarea.value);
+});
+});
 </script>
 </body>
 </html>
