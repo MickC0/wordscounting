@@ -47,9 +47,11 @@
 </div>
 
 <script>
-  if (window.location.pathname === '/' && navigator.language.startsWith('fr')) {
+  // redirige uniquement si l'utilisateur est sur la racine exacte "/" et pas sur "/index.html"
+  if ((window.location.pathname === '/' || window.location.pathname === '/index') && navigator.language.startsWith('fr')) {
     window.location.href = 'fr.html';
   }
+
 
 
   const inputText = document.getElementById('inputText');
